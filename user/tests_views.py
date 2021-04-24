@@ -1,7 +1,8 @@
+"""
+user앱의 views를 테스트합니다.
+"""
 import logging
 from django.contrib.auth.models import AnonymousUser
-from django.core.handlers.wsgi import WSGIRequest
-from django.http import response
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.urls import reverse
@@ -13,12 +14,19 @@ logger = logging.getLogger(__name__)
 
 
 def add_middleware_to_request(request, middleware_class):
+    """
+    request에 테스트를 위한 미들웨어를 추가합니다.
+    """
     middleware = middleware_class()
     middleware.process_request(request)
     return request
 
 
 class SignupViewTests(TestCase):
+    """
+    회원가입 뷰 테스트
+    """
+
     def setUp(self):
         self.factory = RequestFactory()
         self.signup_view = SignupView.as_view()
@@ -51,4 +59,4 @@ class SignupViewTests(TestCase):
         request = add_middleware_to_request(request, SessionMiddleware)
 
         response = self.signup_view(request)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)

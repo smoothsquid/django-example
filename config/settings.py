@@ -18,9 +18,8 @@ from . import secret_settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# settings.py와 같은 디렉토리에 secret_settings.py를 추가하여 SECRET_KEY를 관리합니다
 SECRET_KEY = secret_settings.SECRET_KEY
-
-DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -37,6 +36,9 @@ INSTALLED_APPS = [
     "user",
     "home",
 ]
+
+# Middleware
+# https://docs.djangoproject.com/en/3.2/topics/http/middleware/
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -56,11 +58,15 @@ AUTH_USER_MODEL = "user.User"
 # 로그인 성공 후 리다이렉트 경로
 LOGIN_REDIRECT_URL = "/"
 
+# Templates
+# https://docs.djangoproject.com/en/3.2/ref/settings/#templates
+# https://docs.djangoproject.com/en/3.2/topics/templates/
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, "config/templates"),
+            BASE_DIR / "config" / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
