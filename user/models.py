@@ -10,7 +10,7 @@ class User(AbstractUser):
         _("사용자 이름"),
         max_length=20,
         unique=True,
-        help_text=_("150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다."),
+        help_text=_("20자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다."),
         validators=[username_validator],
         error_messages={
             "unique": _("해당 사용자 이름은 이미 존재합니다."),

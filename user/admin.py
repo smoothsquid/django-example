@@ -25,3 +25,4 @@ class UserAdmin(admin.ModelAdmin):
             },
         ),
     )
+    readonly_fields = ("id",)
