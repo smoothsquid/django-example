@@ -1,3 +1,27 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import User
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "username",
+    )
+    list_display_links = (
+        "id",
+        "username",
+    )
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "id",
+                    "username",
+                    "password",
+                ),
+            },
+        ),
+    )
