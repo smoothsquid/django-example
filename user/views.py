@@ -23,7 +23,7 @@ class SignupView(SuccessMessageMixin, CreateView):
 
 
 class SignoutView(LogoutView):
-    next_page = reverse_lazy("home")
+    next_page = reverse_lazy("user:signin")
 
 
 class SigninView(LoginView):
