@@ -14,7 +14,11 @@ class Board(AbstractBasicInfo):
     """
 
     name = models.CharField(_("게시판 이름"), max_length=50)
-    description = models
+    description = models.TextField(_("게시판 상세 설명"), null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("게시판")
+        verbose_name_plural = _("게시판")
 
 
 class Post(AbstractBasicInfo):
@@ -34,3 +38,7 @@ class Post(AbstractBasicInfo):
     )
     title = models.CharField(_("제목"), max_length=50)
     content = models.TextField(_("본문"))
+
+    class Meta:
+        verbose_name = _("게시글")
+        verbose_name_plural = _("게시글")
