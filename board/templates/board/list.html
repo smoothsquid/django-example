@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}게시판 목록{% endblock title %}
 {% block content %}
-<h1>게시판 선택</h1>
-{% for board in object_list %}
-<a href="">{{ board.name }}</a>
+{% for post in object_list %}
+{{ post }}
 {% endfor %}
 {% endblock content %}

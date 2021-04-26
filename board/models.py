@@ -16,6 +16,9 @@ class Board(AbstractBasicInfo):
     name = models.CharField(_("게시판 이름"), max_length=50)
     description = models.TextField(_("게시판 상세 설명"), null=True, blank=True)
 
+    def __str__(self) -> str:
+        return str(self.name)
+
     class Meta:
         verbose_name = _("게시판")
         verbose_name_plural = _("게시판")
@@ -28,7 +31,7 @@ class Post(AbstractBasicInfo):
 
     user = models.ForeignKey(
         AUTH_USER_MODEL,
-        verbose_name=_(""),
+        verbose_name=_("작성자"),
         on_delete=models.CASCADE,
     )
     board = models.ForeignKey(
@@ -38,6 +41,9 @@ class Post(AbstractBasicInfo):
     )
     title = models.CharField(_("제목"), max_length=50)
     content = models.TextField(_("본문"))
+
+    def __str__(self) -> str:
+        return str(self.title)
 
     class Meta:
         verbose_name = _("게시글")
