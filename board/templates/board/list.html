@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="{% url 'board:create' pk=1 %}">작성하기</a>
 {% for post in object_list %}
-{{ post }}
+<a href="{{ post.get_absolute_url }}">{{ post }}</a>
 {% endfor %}
 {% endblock content %}

@@ -4,6 +4,6 @@
 {% block content %}
 <h1>게시판 선택</h1>
 {% for board in object_list %}
-<a href="">{{ board.name }}</a>
+<a href="{% url 'board:board' pk=board.id %}">{{ board.name }}</a>
 {% endfor %}
 {% endblock content %}

@@ -2,6 +2,7 @@
 
 {% block title %}{{ object.title }}{% endblock title %}
 {% block content %}
-<h1>{{ object.pk }}: {{ object.title }}</h1>
-<p>{{ object.content }}</p>
+<h1>{{ object.title }}</h1>
+<span>{{ object.user }}</span>
+<p>{{ object.content|linebreaksbr }}</p>
 {% endblock content %}

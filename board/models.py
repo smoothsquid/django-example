@@ -3,6 +3,7 @@
 """
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 from config.settings import AUTH_USER_MODEL
 from config.models import AbstractBasicInfo
@@ -41,6 +42,15 @@ class Post(AbstractBasicInfo):
     )
     title = models.CharField(_("제목"), max_length=50)
     content = models.TextField(_("본문"))
+
+    def get_absolute_url(self):
+        return reverse(
+            "board:post",
+            kwargs={
+                "board_pk": self.board.pk,
+                "pk": self.pk,
+            },
+        )
 
     def __str__(self) -> str:
         return str(self.title)
