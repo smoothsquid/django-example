@@ -14,4 +14,7 @@ class PostCreationForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ("board", "title", "content")
-        widgets = {"board": forms.HiddenInput()}
+        widgets = {
+            "board": forms.HiddenInput(),
+            "title": forms.TextInput({"class": "form-control"}),
+        }

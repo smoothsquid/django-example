@@ -1,12 +1,13 @@
 """
 게시판 및 게시글 뷰
 """
-from django.http.response import HttpResponseRedirect
-from board.forms import PostCreationForm
+from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.utils.decorators import method_decorator
 
+from .forms import PostCreationForm
 from .models import Board, Post
 
 
@@ -25,9 +26,20 @@ class PostListView(ListView):
     """
 
     template_name = "board/list.html"
+    paginate_by = 5
+    board_object = None
+    board_pk_url_kwargs = "pk"
 
     def get_queryset(self):
-        return Post.objects.filter(board__id=self.kwargs["pk"])
+        self.board_object = Board.objects.get(
+            pk=self.kwargs[self.board_pk_url_kwargs],
+        )
+        return Post.objects.filter(board=self.board_object)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["board_object"] = self.board_object
+        return context
 
 
 class PostDetailView(DetailView):
@@ -47,6 +59,7 @@ class PostDetailView(DetailView):
         return super().get_queryset().filter(board__pk=board_pk)
 
 
+@method_decorator(login_required, name="dispatch")
 class PostCreationView(CreateView):
     """
     게시글 등록 폼 및 등록
@@ -56,6 +69,10 @@ class PostCreationView(CreateView):
     model = Post
     form_class = PostCreationForm
     board_pk_url_kwargs = "board_pk"
+
+    # @login_required
+    # def dispatch(self, *args, **kwargs):
+    #     super().dispatch(*args, **kwargs)
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)

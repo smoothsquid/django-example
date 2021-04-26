@@ -97,6 +97,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
+    def __str__(self):
+        return self.username or self.email
+
     class Meta:
         verbose_name = _("사용자")
         verbose_name_plural = _("사용자")

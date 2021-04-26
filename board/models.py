@@ -17,6 +17,12 @@ class Board(AbstractBasicInfo):
     name = models.CharField(_("게시판 이름"), max_length=50)
     description = models.TextField(_("게시판 상세 설명"), null=True, blank=True)
 
+    def get_absolute_url(self):
+        """
+        게시판의 게시글 목록 URL
+        """
+        return reverse("board:board", kwargs={"pk": self.pk})
+
     def __str__(self) -> str:
         return str(self.name)
 
@@ -44,6 +50,9 @@ class Post(AbstractBasicInfo):
     content = models.TextField(_("본문"))
 
     def get_absolute_url(self):
+        """
+        게시글 상세정보 URL
+        """
         return reverse(
             "board:post",
             kwargs={

@@ -5,13 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
-    {% block extra-header %}{% endblock extra-header %}
+    {% block extra_header %}{% endblock extra_header %}
+    {% include "include/css.html" %}
+    {% block extra_style %}{% endblock extra_style %}
 </head>
 <body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="{% url 'home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <span class="fs-4">Django Board</span>
+        </a>
+        <ul class="nav nav-pills">
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="#" class="nav-link">{{ user }}</a></li>
+            <li class="nav-item"><a href="{% url 'user:signout' %}" class="nav-link">로그아웃</a></li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'user:signin' %}" class="nav-link">로그인</a></li>
+            <li class="nav-item"><a href="{% url 'user:signup' %}" class="nav-link">회원가입</a></li>
+            {% endif %}
+        </ul>
+    </header>
     {% for message in messages %}
     <p>{{ message }}</p>
     {% endfor %}
     {% block content %}{% endblock content %}
-    {% block extra-script %}{% endblock extra-script %}
+    {% include "include/js.html" %}
+    {% block extra_script %}{% endblock extra_script %}
 </body>
 </html>

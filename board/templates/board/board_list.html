@@ -2,8 +2,14 @@
 
 {% block title %}게시판 목록{% endblock title %}
 {% block content %}
-<h1>게시판 선택</h1>
-{% for board in object_list %}
-<a href="{% url 'board:board' pk=board.id %}">{{ board.name }}</a>
-{% endfor %}
+<div class="container">
+    <h1>게시판 선택</h1>
+    <ul>
+        {% for board in object_list %}
+        <li>
+            <a href="{{ board.get_absolute_url }}">{{ board.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}

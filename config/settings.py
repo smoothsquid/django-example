@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-
 from pathlib import Path
 
 from . import secret_settings
@@ -21,8 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # settings.py와 같은 디렉토리에 secret_settings.py를 추가하여 SECRET_KEY를 관리합니다
 SECRET_KEY = secret_settings.SECRET_KEY
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = [
+    "*",
+]
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 # Application definition
 
@@ -33,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "bootstrap5",
     "user",
     "home",
     "board",
@@ -56,6 +60,8 @@ ROOT_URLCONF = "config.urls"
 # 사용자 모델 변경
 AUTH_USER_MODEL = "user.User"
 
+# 로그인 URL
+LOGIN_URL = "/user/signin"
 # 로그인 성공 후 리다이렉트 경로
 LOGIN_REDIRECT_URL = "/"
 
@@ -121,7 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

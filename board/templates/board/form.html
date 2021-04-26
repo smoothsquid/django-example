@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">등록하기</button>
-</form>
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary btn-block">등록하기</button>
+        {% endbuttons %}
+    </form>
+</div>
 {% endblock content %}
