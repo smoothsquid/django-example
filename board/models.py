@@ -14,8 +14,19 @@ class Board(AbstractBasicInfo):
     게시판 정보
     """
 
-    name = models.CharField(_("게시판 이름"), max_length=50)
-    description = models.TextField(_("게시판 상세 설명"), null=True, blank=True)
+    name = models.CharField(
+        _("게시판 이름"),
+        max_length=50,
+    )
+    description = models.TextField(
+        _("게시판 상세 설명"),
+        null=True,
+        blank=True,
+    )
+    is_active = models.BooleanField(
+        _("활성"),
+        default=True,
+    )
 
     def get_absolute_url(self):
         """
@@ -48,6 +59,7 @@ class Post(AbstractBasicInfo):
     )
     title = models.CharField(_("제목"), max_length=50)
     content = models.TextField(_("본문"))
+    deleted = models.BooleanField(_("삭제"), default=False)
 
     def get_absolute_url(self):
         """

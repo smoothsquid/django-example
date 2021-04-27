@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('board', '0002_board_description'),
+        ("board", "0002_board_description"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='board',
-            options={'verbose_name': '게시판', 'verbose_name_plural': '게시판'},
+            name="board",
+            options={"verbose_name": "게시판", "verbose_name_plural": "게시판"},
         ),
         migrations.AlterModelOptions(
-            name='post',
-            options={'verbose_name': '게시글', 'verbose_name_plural': '게시글'},
+            name="post",
+            options={"verbose_name": "게시글", "verbose_name_plural": "게시글"},
         ),
     ]

@@ -15,30 +15,76 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Board',
+            name="Board",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='생성 시간')),
-                ('updated', models.DateTimeField(auto_now=True, null=True, verbose_name='변경 시간')),
-                ('name', models.CharField(max_length=50, verbose_name='게시판 이름')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now_add=True, verbose_name="생성 시간"),
+                ),
+                (
+                    "updated",
+                    models.DateTimeField(
+                        auto_now=True, null=True, verbose_name="변경 시간"
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, verbose_name="게시판 이름")),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='생성 시간')),
-                ('updated', models.DateTimeField(auto_now=True, null=True, verbose_name='변경 시간')),
-                ('title', models.CharField(max_length=50, verbose_name='제목')),
-                ('content', models.TextField(verbose_name='본문')),
-                ('board', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='board.board', verbose_name='게시판')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now_add=True, verbose_name="생성 시간"),
+                ),
+                (
+                    "updated",
+                    models.DateTimeField(
+                        auto_now=True, null=True, verbose_name="변경 시간"
+                    ),
+                ),
+                ("title", models.CharField(max_length=50, verbose_name="제목")),
+                ("content", models.TextField(verbose_name="본문")),
+                (
+                    "board",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="board.board",
+                        verbose_name="게시판",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
