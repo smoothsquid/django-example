@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
     {% block extra_header %}{% endblock extra_header %}
-    {% include "include/css.html" %}
+    {% include "includes/css.html" %}
     {% block extra_style %}{% endblock extra_style %}
 </head>
 <body>
@@ -28,7 +28,7 @@
     <p>{{ message }}</p>
     {% endfor %}
     {% block content %}{% endblock content %}
-    {% include "include/js.html" %}
+    {% include "includes/js.html" %}
     {% block extra_script %}{% endblock extra_script %}
 </body>
 </html>
