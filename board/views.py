@@ -70,10 +70,6 @@ class PostCreationView(CreateView):
     form_class = PostCreationForm
     board_pk_url_kwargs = "board_pk"
 
-    # @login_required
-    # def dispatch(self, *args, **kwargs):
-    #     super().dispatch(*args, **kwargs)
-
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields["board"].initial = Board.objects.get(
@@ -83,5 +79,4 @@ class PostCreationView(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        # return HttpResponseRedirect(self.get_success_url())
         return super().form_valid(form)

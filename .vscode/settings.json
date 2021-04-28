@@ -10,7 +10,7 @@
         "--django-settings-module=config.settings"
     ],
 
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "autopep8",
     "files.associations": {
         "**/*.html": "html",
         "**/templates/**/*.html": "django-html",
